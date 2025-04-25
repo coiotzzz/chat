@@ -15,7 +15,7 @@ const msgSenderElement = document.querySelector(".message--sender");
 
 //user
 const user = { id:"", name:"", color:""}
-
+//cores para sortear nos users
 const colors = [
     "cadetblue",
     "darkgoldenrod",
@@ -54,7 +54,7 @@ const createMessageOtherElement = (content, sender, senderColor) => {
     return div
 }
 
-//cor aleatoria do array
+//cor sorteada para user
 const randomColor = () => {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
