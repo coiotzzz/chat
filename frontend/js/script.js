@@ -13,6 +13,7 @@ const chatMessages = chat.querySelector(".chat__messages");
 const msgSelfElement = document.querySelector(".message--self");
 const msgSenderElement = document.querySelector(".message--sender");
 
+//user
 const user = { id:"", name:"", color:""}
 
 const colors = [
@@ -23,9 +24,10 @@ const colors = [
     "hotpink",
     "gold"
 ];
-
+//ws
 let websocket
 
+//mensagem propria
 const createMessageSelfElement = (content) => {
     const div = document.createElement("div");
     
@@ -34,7 +36,7 @@ const createMessageSelfElement = (content) => {
     
     return div
 }
-
+//mensagem outros
 const createMessageOtherElement = (content, sender, senderColor) => {
     const div = document.createElement("div");
     const span = document.createElement("span");
@@ -52,18 +54,19 @@ const createMessageOtherElement = (content, sender, senderColor) => {
     return div
 }
 
+//cor aleatoria do array
 const randomColor = () => {
     const randomIndex = Math.floor(Math.random() * colors.length);
     return colors[randomIndex];
 }
-
+//paginar rolar para o fim das mensagens
 const scrollScreen = () => {
     window.scrollTo({
         top: document.body.scrollHeight,
         behavior: "smooth"
     })
 }
-
+//processar as mensagens
 const processMessage = ({ data }) => {
     
     const { userId, userName, userColor, content } = JSON.parse(data);
@@ -79,7 +82,7 @@ const processMessage = ({ data }) => {
     scrollScreen();
 
 }
-
+//pegando login
 const handleLogin = (event) => {
     event.preventDefault();
     user.name = loginInput.value;
@@ -94,7 +97,7 @@ const handleLogin = (event) => {
     websocket.onmessage = processMessage
  
 }
-
+//enviando mensagens pro ws
 const sendMessage = (event) => {
     event.preventDefault()
 
